@@ -1,13 +1,18 @@
 jquery.line
 ===========
 
-Draw a line between two points in the given container.
+## Customization 
+#### 09.01.2017
+Add the customization of the line's class directly from builder options.
+Now, the div which represent the line can be obtained by the return of line.
+
+## ****************************************************************************
+
+###Draw a line between two points in the given container.
 
 Usage:
 
-$(selector).line(x1,y1,x2,y2,options,callback);
-
-//Assuming that #example have position:relative or absolute.
+var myDiv = $(selector).line(x1,y1,x2,y2,options,callback);
 
 $('#example').line(0, 0, 20, 20);
 
@@ -17,7 +22,8 @@ Defaults are:
   { zindex : -1,
     color : '#000000',
     stroke: '1',
-    style: 'solid'
+    style: 'solid',
+    class: 'drawingLine'
   }
 
 Example: 
