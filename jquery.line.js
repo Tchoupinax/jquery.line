@@ -1,13 +1,9 @@
-/*-------------------------------------------------------------------------------------------------
-  This plugin is based on the GAPJUMPER line example http://www.gapjumper.com/research/lines.html.
-  Special thanks to its author!
-  Author: Tiago do Bem 
-  Date: March 2013
-  URL: https://github.com/tbem/jquery.line
-  The jQuery.line.js plugin is distributed under the GNU General Public License version 3 (GPLv3).
-  -------------------------------------------------------------------------------------------------
+/*
+    -------------------------------------------------------------------------------------------------
+    This plugin is based on https://github.com/tbem/jquery.line
+    Thanks to him !
+    -------------------------------------------------------------------------------------------------
 */
-
 (function ($) {
     var helpers = {
         createLine: function (x1, y1, x2, y2, options) {
@@ -47,6 +43,7 @@
         }
     }
     $.fn.line = function (x1, y1, x2, y2, options, callbacks) {
+        var line;
         $(this).each(function () {
             if ($.isFunction(options)) {
                 callback = options;
@@ -55,18 +52,20 @@
                 callback = callbacks;
             }
             options = $.extend({}, $.fn.line.defaults, options);
-            $(this).append(helpers.createLine(x1, y1, x2, y2, options)).promise().done(function () {
+            line = helpers.createLine(x1, y1, x2, y2, options);
+            $(this).append(line).promise().done(function () {
                 if ($.isFunction(callback)) {
                     callback.call();
                 }
             });
         });
+        return line;
     };
     $.fn.line.defaults = {
         zindex: 10000,
         color: '#000000',
         stroke: "1",
         style: "solid",
-        class: "line"
+        class: "drawingLine"
     };
 })(jQuery);
